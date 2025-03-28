@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="flex flex-col rounded-lg border border-gray-300">
+  <div class="bg-orange-500 rounded-t-lg px-5 text-sm pt-7 space-y-5 pb-4">
+    <p class="text-white">Selecione as datas:</p>
+    <div class="bg-white rounded-lg text-sm py-4 px-3">
+      04 de fevereiro ~ 08 de fevereiro
+    </div>
+  </div>
+  <div class="px-5 py-4 space-y-5">
+    <p class="cursor-pointer">Filtros</p>
+    <p class="cursor-pointer">Preço</p>
+  </div>
+  <hr class="border-gray-300 mx-5" />
+  <div class="px-5 py-4 space-y-3">
+    <p class="text-sm text-gray-500 bg-gray-100 rounded-lg px-3 py-2">
+      Hóspedes
+    </p>
+    <ul class="space-y-2 ml-2">
+      <li class="flex items-center gap-2">
+        <input type="checkbox" id="guest-1" class="rounded" />
+        <label for="guest-1" class="text-xs">1</label>
+      </li>
+      <li class="flex items-center gap-2">
+        <input type="checkbox" id="guest-2" class="rounded" />
+        <label for="guest-2" class="text-xs">2</label>
+      </li>
+      <li class="flex items-center gap-2">
+        <input type="checkbox" id="guest-3" class="rounded" />
+        <label for="guest-3" class="text-xs">3</label>
+      </li>
+      <li class="flex items-center gap-2">
+        <input type="checkbox" id="guest-4" class="rounded" />
+        <label for="guest-4" class="text-xs">4+</label>
+      </li>
+    </ul>
+  </div>
+  <hr class="border-gray-300 mx-5" />
+  <div class="px-5 py-4 space-y-3">
+    <p class="cursor-pointer">Avaliação</p>
+  </div>
+</div>

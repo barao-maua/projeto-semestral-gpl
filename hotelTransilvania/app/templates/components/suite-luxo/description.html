@@ -1,20 +1,31 @@
 {% load static %}
-<div class="px-24 flex justify-between items-start mb-24">
-  <div class="w-[65%]">
-    <h2 class="text-2xl font-bold mb-4">Descrição</h2>
-    <p class="text-sm mb-4 leading-relaxed">
-      Desfrute do máximo conforto e sofisticação na Suíte Luxo, um ambiente
-      projetado para proporcionar uma experiência inesquecível. Com uma
-      decoração elegante e moderna, a suíte oferece uma vista panorâmica
-      deslumbrante do oceano, perfeita para momentos de relaxamento e
-      contemplação.
-      <br />
-      O espaço conta com uma cama king-size de alto padrão, enxoval de algodão
-      egípcio e um menu de travesseiros para garantir noites de descanso
-      absoluto. A ampla varanda privativa convida você a apreciar o nascer do
-      sol enquanto saboreia um café especial.
-    </p>
-  </div>
 
-  <aside>{% include 'components/suite-luxo/reservar.html' %}</aside>
+<div class="w-[65%]">
+  <h2 class="text-2xl font-bold mb-4">Descrição</h2>
+  <p class="text-sm mb-4 leading-7">
+    Desfrute do máximo conforto e sofisticação na Suíte Luxo, um ambiente
+    projetado para proporcionar uma experiência inesquecível. Com uma decoração
+    elegante e moderna, a suíte oferece uma vista panorâmica deslumbrante do
+    oceano, perfeita para momentos de relaxamento e contemplação.
+    <br />
+    O espaço conta com uma cama king-size de alto padrão, enxoval de algodão
+    egípcio e um menu de travesseiros para garantir noites de descanso absoluto.
+    A ampla varanda privativa convida você a apreciar o nascer do sol enquanto
+    saboreia um café especial.
+  </p>
+  <hr class="my-20 border-gray-300" />
+  <h2 class="text-2xl font-bold mb-7">O que este quarto inclui:</h2>
+  <ul
+    class="text-sm space-y-3 max-h-60 overflow-y-auto md:grid md:grid-cols-2 md:gap-5"
+  >
+    <li>Cama king</li>
+    <li>Serviço de quarto</li>
+    <li>Wi-fi Grátis</li>
+    <li>Secador de cabelo</li>
+    <li>Estacionamento para clientes</li>
+    <li>Restaurante no local</li>
+    <li>Ambiente climatizado</li>
+    <li>Academia</li>
+  </ul>
+  <hr class="mt-20 border-gray-300" />
 </div>

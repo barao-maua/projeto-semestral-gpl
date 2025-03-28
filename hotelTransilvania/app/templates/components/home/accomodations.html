@@ -1,7 +1,9 @@
 {% load static %}
 <div class="px-24 flex flex-col mb-26">
   <h2 class="text-3xl font-bold">Nossas Acomodações</h2>
-  <a href="" class="text-sm text-gray-500 underline w-full text-end my-2"
+  <a
+    href="{% url 'accomodations' %}"
+    class="text-sm text-gray-500 underline w-full text-end my-2 hover:text-orange-500 transition-all duration-300"
     >Ver mais</a
   >
   <ul class="flex justify-between">
