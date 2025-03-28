@@ -1,7 +1,21 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block content %}
-<h1>hi</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<header class="relative">
+  <img
+    src="{% static 'images/home/banner.jpg' %}"
+    alt="Banner top Hotel Transilvania"
+    class="w-full"
+  />
+  <button
+    style="background-color: var(--color-background)"
+    class="absolute text-white px-10 py-5 rounded-full left-1/2 bottom-8 cursor-pointer -translate-x-1/2 opacity-80 hover:opacity-100 transition-opacity duration-300"
+  >
+    Faça agora sua reserva!
+  </button>
+</header>
+<section>{% include 'components/home/hotel-details.html' %}</section>
+<section>{% include 'components/home/highlights-services.html' %}</section>
+<section>{% include 'components/home/accomodations.html' %}</section>
+<section>{% include 'components/home/about-us.html' %}</section>
+<section>{% include 'components/home/location.html' %}</section>
+<section>{% include 'components/home/contact.html' %}</section>
 {% endblock %}

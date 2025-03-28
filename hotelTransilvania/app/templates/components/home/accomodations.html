@@ -1,0 +1,106 @@
+{% load static %}
+<div class="px-24 flex flex-col mb-26">
+  <h2 class="text-3xl font-bold">Nossas Acomodações</h2>
+  <a href="" class="text-sm text-gray-500 underline w-full text-end my-2"
+    >Ver mais</a
+  >
+  <ul class="flex justify-between">
+    <li class="space-y-1">
+      <a href="{% url 'suite_luxo' %}">
+        <div
+          class="bg-cover bg-center w-[230px] h-[180px] bg-[url({% static 'images/home/accomodations/image-1.png' %})]"
+          aria-label="Suíte Luxo"
+        ></div>
+        <div class="space-y-1">
+          <p>Suíte Luxo</p>
+          <span class="flex items-center gap-2">
+            <span class="text-gray-500">1-2</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M9 13c-1.915 0-3.603.965-4.792 2.245c-1.182 1.273-1.958 2.948-1.958 4.505c0 .414.336.75.75.75h12a.75.75 0 0 0 .75-.75c0-1.558-.775-3.232-1.958-4.505C12.602 13.965 10.915 13 9 13m8.204.301a.75.75 0 0 0-.408 1.444c.933.264 1.801 1.019 2.45 2.014c.647.995 1.004 2.122 1.004 2.99a.75.75 0 0 0 1.5 0c0-1.22-.478-2.627-1.248-3.808c-.769-1.181-1.9-2.244-3.298-2.64M9 3.5A3.75 3.75 0 1 0 9 11a3.75 3.75 0 0 0 0-7.5m6 0a.75.75 0 0 0-.75.75v6c0 .414.336.75.75.75a3.75 3.75 0 1 0 0-7.5"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+    </li>
+
+    <li class="space-y-1">
+      <div
+        class="bg-cover bg-center w-[230px] h-[180px] bg-[url({% static 'images/home/accomodations/image-2.png' %})]"
+        aria-label="Quarto Executivo"
+      ></div>
+      <div class="space-y-1">
+        <p>Quarto Executivo</p>
+        <span class="flex items-center gap-2">
+          <span class="text-gray-500">1</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5"
+            />
+          </svg>
+        </span>
+      </div>
+    </li>
+
+    <li class="space-y-1">
+      <div
+        class="bg-cover bg-center w-[230px] h-[180px] bg-[url({% static 'images/home/accomodations/image-3.png' %})]"
+        aria-label="Quarto Família"
+      ></div>
+      <div class="space-y-1">
+        <p>Quarto Família</p>
+        <span class="flex items-center gap-2">
+          <span class="text-gray-500">2-5</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M9 13c-1.915 0-3.603.965-4.792 2.245c-1.182 1.273-1.958 2.948-1.958 4.505c0 .414.336.75.75.75h12a.75.75 0 0 0 .75-.75c0-1.558-.775-3.232-1.958-4.505C12.602 13.965 10.915 13 9 13m8.204.301a.75.75 0 0 0-.408 1.444c.933.264 1.801 1.019 2.45 2.014c.647.995 1.004 2.122 1.004 2.99a.75.75 0 0 0 1.5 0c0-1.22-.478-2.627-1.248-3.808c-.769-1.181-1.9-2.244-3.298-2.64M9 3.5A3.75 3.75 0 1 0 9 11a3.75 3.75 0 0 0 0-7.5m6 0a.75.75 0 0 0-.75.75v6c0 .414.336.75.75.75a3.75 3.75 0 1 0 0-7.5"
+            />
+          </svg>
+        </span>
+      </div>
+    </li>
+
+    <li class="space-y-1">
+      <div
+        class="bg-cover bg-center w-[230px] h-[180px] bg-[url({% static 'images/home/accomodations/image-4.png' %})]"
+        aria-label="Quarto Executivo"
+      ></div>
+      <div class="space-y-1">
+        <p>Quarto Econômico</p>
+        <span class="flex items-center gap-2">
+          <span class="text-gray-500">1-2</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M9 13c-1.915 0-3.603.965-4.792 2.245c-1.182 1.273-1.958 2.948-1.958 4.505c0 .414.336.75.75.75h12a.75.75 0 0 0 .75-.75c0-1.558-.775-3.232-1.958-4.505C12.602 13.965 10.915 13 9 13m8.204.301a.75.75 0 0 0-.408 1.444c.933.264 1.801 1.019 2.45 2.014c.647.995 1.004 2.122 1.004 2.99a.75.75 0 0 0 1.5 0c0-1.22-.478-2.627-1.248-3.808c-.769-1.181-1.9-2.244-3.298-2.64M9 3.5A3.75 3.75 0 1 0 9 11a3.75 3.75 0 0 0 0-7.5m6 0a.75.75 0 0 0-.75.75v6c0 .414.336.75.75.75a3.75 3.75 0 1 0 0-7.5"
+            />
+          </svg>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
