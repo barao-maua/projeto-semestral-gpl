@@ -1,11 +1,14 @@
 from django.db import models
 
 class Acomodacao(models.Model):
-    nomeAcomodacao = models.CharField(max_length=45)
+    nome = models.CharField(max_length=45)
     capacidade = models.IntegerField()
     descricao = models.TextField()
-    preco = models.DecimalField(max_length=10, decimal_places=2)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__ (self):
+        return self.nome
 
     class Meta():
         db_table = 'acomodacao'
-        maneged = False
+        managed = False
