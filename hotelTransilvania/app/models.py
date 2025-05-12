@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Acomodacao(models.Model):
     nome = models.CharField(max_length=45)
@@ -20,7 +21,7 @@ class Acomodacao(models.Model):
     
 
 class AcomodacaoImagem(models.Model):
-    acomodacao_id = models.ForeignKey(Acomodacao)
+    acomodacao_id = models.ForeignKey(Acomodacao, on_delete=models.CASCADE)
     imagem_url = models.CharField(max_length=255)
     ordem = models.IntegerField(default=1)
 
@@ -37,8 +38,8 @@ class Usuario(models.Model):
         ('M', 'Masculino'),
     ]
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=11, primary_key=True)
-    endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=15)
     email = models.EmailField()
