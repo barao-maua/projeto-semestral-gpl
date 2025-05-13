@@ -39,7 +39,7 @@ class Usuario(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cpf = models.CharField(max_length=11, primary_key=True)
+    cpf = models.CharField(max_length=14, primary_key=True)
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=15)
     email = models.EmailField()
