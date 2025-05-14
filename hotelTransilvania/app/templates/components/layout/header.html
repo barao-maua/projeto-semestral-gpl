@@ -12,11 +12,17 @@
 
     <ul class="flex items-center gap-2">
       <li>
-        <a href= "{% url 'cadastro' %}" class="font-extralight hover:underline font-bold"
+        <a
+          href="{% url 'cadastro' %}"
+          class="font-extralight hover:underline font-bold"
           >Registrar-se</a
         >
       </li>
-      <li><button class="rounded-3xl btn btn-outline">Entrar</button></li>
+      <li>
+        <a href="{% url 'login' %}" class="rounded-3xl btn btn-outline"
+          >Entrar</a
+        >
+      </li>
     </ul>
   </nav>
 </header>
