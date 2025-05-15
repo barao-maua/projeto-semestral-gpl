@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Acomodacao
+from .models import Acomodacao, AcomodacaoImagem
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UsuarioForm
@@ -12,13 +12,11 @@ def suite_luxo(request):
     return render(request, 'suite-luxo.html', {'acomodacao': acomodacao})
 
 def accomodations(request):
-    return render(request, 'accomodations.html')
+    acomodacaoImagem = AcomodacaoImagem.objects.get(id=1)
+    return render(request, 'accomodationsc.html', {'acomodacaoImagem': acomodacaoImagem})
 
 def reserva(request): 
     return render(request, 'reserva.html')
-
-def sucesso(request):
-    return render(request, 'sucesso.html')
 
 def cadastrar_usuario(request):
     if request.method == 'POST':
@@ -33,7 +31,7 @@ def cadastrar_usuario(request):
             usuario.user = user
             usuario.save()
 
-            return redirect('sucesso')  # Redireciona após cadastro bem-sucedido
+            return redirect('login')  # Redireciona após cadastro bem-sucedido
     else:
         form = UsuarioForm()
     return render(request, 'cadastro.html', {'form': form})
@@ -59,4 +57,4 @@ def login_usuario(request):
 
 def logout_usuario(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')

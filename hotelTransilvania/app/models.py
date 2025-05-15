@@ -16,14 +16,14 @@ class Acomodacao(models.Model):
     def __str__ (self):
         return self.descricao
     
-    def __str__ (self):
-        return self.preco
-    
 
 class AcomodacaoImagem(models.Model):
-    acomodacao_id = models.ForeignKey(Acomodacao, on_delete=models.CASCADE)
+    acomodacao = models.ForeignKey(Acomodacao, on_delete=models.CASCADE)
     imagem_url = models.CharField(max_length=255)
     ordem = models.IntegerField(default=1)
+
+    def __str__ (self):
+        return self.imagem_url
 
 class Endereco(models.Model):
     cep = models.CharField(max_length=9)
