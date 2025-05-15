@@ -51,5 +51,18 @@ class LoginForm(forms.Form):
         label='Senha'
     )
 
+class AvaliacaoUsuarioForm(forms.ModelForm):
+    nota = forms.DecimalField(min_value=0.0, max_value=5.0, max_digits=2, decimal_places=1)
+
+    class Meta:
+        model = AvaliacaoUsuario
+        fields = ['nota', 'comentario']
+
+        widget=forms.NumberInput(attrs={
+            'type': 'range',
+            'step': '0.1',
+            'min': '0',
+            'max': '5'
+        })
 
     

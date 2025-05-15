@@ -61,3 +61,22 @@ def logout_usuario(request):
     return redirect('home')
 
 
+@login_required
+def criar_avaliacao(request):
+    if request.method == 'POST':
+        form = AvaliacaoUsuarioForm(request.POST)
+        if form.is_valid():
+            
+            avaliacao = form.save(commit=False)
+            
+            user = request.user
+            usuario = get_object_or_404(Usuario, user = user)
+            avaliacao.usuario = usuario
+            acomodacao = get_object_or_404(Acomodacao, id=1)
+            avaliacao.acomodacao = acomodacao
+            avaliacao.save()
+
+            return redirect('suite_luxo')
+    else:
+        form = AvaliacaoUsuarioForm()
+    return render(request, 'avaliar.html', {'form': form})
