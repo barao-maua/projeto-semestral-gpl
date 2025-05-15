@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, AvaliacaoUsuario
 
 class UsuarioForm(forms.ModelForm):
     username = forms.CharField(
@@ -51,3 +51,5 @@ class LoginForm(forms.Form):
         label='Senha'
     )
 
+
+    

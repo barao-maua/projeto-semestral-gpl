@@ -31,6 +31,7 @@ urlpatterns = [
     path('cadastro/', app_views.cadastrar_usuario, name='cadastro'),
     path('login/', app_views.login_usuario, name='login'),
     path('logout/', app_views.logout_usuario, name='logout'),
+    path('avaliar/', app_views.criar_avaliacao, name='criar_avaliacao'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
-from .models import Acomodacao, AcomodacaoImagem
+from django.shortcuts import render, redirect,  get_object_or_404
+from .models import Acomodacao, Usuario
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import UsuarioForm
-from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
+from .forms import UsuarioForm, LoginForm, AvaliacaoUsuarioForm
+
 def home(request): 
     return render(request, 'home.html')
 
@@ -12,8 +13,8 @@ def suite_luxo(request):
     return render(request, 'suite-luxo.html', {'acomodacao': acomodacao})
 
 def accomodations(request):
-    acomodacaoImagem = AcomodacaoImagem.objects.get(id=1)
-    return render(request, 'accomodationsc.html', {'acomodacaoImagem': acomodacaoImagem})
+    return render(request, 'accomodations.html')
+
 
 def reserva(request): 
     return render(request, 'reserva.html')
@@ -58,3 +59,5 @@ def login_usuario(request):
 def logout_usuario(request):
     logout(request)
     return redirect('home')
+
+

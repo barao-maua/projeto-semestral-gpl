@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Acomodacao(models.Model):
     nome = models.CharField(max_length=45)
@@ -52,7 +53,11 @@ class AvaliacaoUsuario(models.Model):
     id = models.AutoField(primary_key=True)
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column='id_usuario')
     acomodacao = models.ForeignKey('Acomodacao', on_delete=models.CASCADE, db_column='id_acomodacao')
-    nota = models.DecimalField(max_digits=2, decimal_places=1)
+    nota =  models.DecimalField(
+        max_digits=2,
+        decimal_places=1,
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
     comentario = models.TextField()
     data_avaliacao = models.DateTimeField(auto_now_add=True)
 

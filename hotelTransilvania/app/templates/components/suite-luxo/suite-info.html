@@ -12,12 +12,18 @@
     >
       Cancelamento Gratuito
     </p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'criar_avaliacao' %}"
+    class="rounded-3xl btn btn-outline">AVALIAR</a>
+    {% endif %}
   </div>
   <h2 class="text-3xl font-bold my-10">{{ acomodacao.nome }}</h2>
+
   <div class="flex justify-between items-center">
     <div class="flex gap-2">
       <p class="text-sm mb-2 px-2 py-1 w-fit text-gray-700">4.8 (269)</p>
       <p class="text-sm mb-2 px-2 py-1 w-fit text-gray-700">1-2 Pessoas</p>
+
     </div>
     <div class="flex gap-5">
       <span class="cursor-pointer">
@@ -94,5 +100,6 @@
       <p>Beira-Mar</p>
       <p class="text-gray-500">Sim</p>
     </li>
+
   </ul>
 </div>
