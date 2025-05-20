@@ -1,0 +1,62 @@
+{% load static %}
+<!-- RESUMO DA RESERVA -->
+<div class="w-1/3 bg-white p-6 rounded-lg shadow-md border border-gray-300">
+    <div class="border-b border-gray-300 pb-3 mb-4 bg-gray-100 rounded-md">
+        <h2 class="text-xl font-bold text-center py-2">Resumo da reserva</h2>
+    </div>
+
+    <div class="text-sm space-y-2 mb-4">
+        <p><strong>Acomodação:</strong> Suíte Luxo</p>
+        <p><strong>Capacidade:</strong> 2 pessoas</p>
+        <p><strong>Preço por noite:</strong> R$ 320,00</p>
+        <p id="resumoDatas" class="text-sm text-gray-600"></p>
+        <p id="total_reserva" class="text-lg font-semibold text-emerald-700"></p>
+    </div>
+
+    <!-- CARROSSEL DE IMAGENS -->
+    <div class="relative w-full overflow-hidden rounded-md">
+        <div id="carouselImages" class="flex transition-transform duration-500 ease-in-out">
+            <img src="{% static 'images/suite-luxo/1.png' %}" class="w-full max-h-52 object-cover flex-shrink-0" alt="Imagem 1" />
+            <img src="{% static 'images/suite-luxo/2.png' %}" class="w-full max-h-52 object-cover flex-shrink-0" alt="Imagem 2" />
+            <img src="{% static 'images/suite-luxo/3.png' %}" class="w-full max-h-52 object-cover flex-shrink-0" alt="Imagem 3" />
+            <img src="{% static 'images/suite-luxo/4.png' %}" class="w-full max-h-52 object-cover flex-shrink-0" alt="Imagem 4" />
+        </div>
+
+        <!-- SETAS -->
+        <button onclick="prevSlide()" class="cursor-pointer absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full shadow-md hover:bg-gray-100">
+            <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+
+        <button onclick="nextSlide()" class="cursor-pointer absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full shadow-md hover:bg-gray-100">
+            <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const carousel = document.getElementById('carouselImages');
+    const slides = carousel.children;
+
+    function updateCarousel() {
+        const width = slides[0].clientWidth;
+        carousel.style.transform = `translateX(-${currentIndex * width}px)`;
+    }
+
+    // Expor as funções globalmente
+    window.nextSlide = function () {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    };
+
+    window.prevSlide = function () {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    };
+
+    window.addEventListener('resize', updateCarousel);
+</script>
