@@ -37,7 +37,11 @@
     </div>
 </div>
 
-<script>
+<script type="module">
+    import { calcularTotal } from "{% static 'js/calculoTotalReserva.js' %}";
+    document.getElementById('data_ida').addEventListener('change', calcularTotal);
+    document.getElementById('data_volta').addEventListener('change', calcularTotal);
+
     let currentIndex = 0;
     const carousel = document.getElementById('carouselImages');
     const slides = carousel.children;
