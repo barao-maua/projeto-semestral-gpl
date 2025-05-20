@@ -1,0 +1,35 @@
+<div class="w-2/3 bg-white p-8 rounded-lg shadow-md border border-gray-300">
+    <h2 class="text-xl font-bold text-center mb-6">Informações de compra</h2>
+
+    <form method="POST" class="space-y-5" >
+        {% csrf_token %}
+        <div>
+            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+            {{ form.nome }}
+        </div>
+        <div>
+            <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF</label>
+            {{ form.cpf }}
+        </div>
+        <div>
+            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+            {{ form.telefone }}
+        </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="data_ida" class="block text-sm font-medium text-gray-700 mb-1">Data de ida</label>
+            <input type="date" id="data_ida" name="data_ida" class="w-full border border-gray-300 rounded-md px-3 py-2" required>
+        </div>
+        <div>
+            <label for="data_volta" class="block text-sm font-medium text-gray-700 mb-1">Data de volta</label>
+            <input type="date" id="data_volta" name="data_volta" class="w-full border border-gray-300 rounded-md px-3 py-2" required>
+        </div>
+
+        <button type="submit" class="w-full text-white py-2 px-4 rounded-md transition duration-300 font-bold cursor-pointer" style="background-color: #eb662b">
+            Ir para o pagamento
+        </button>
+    </form>
+</div>
