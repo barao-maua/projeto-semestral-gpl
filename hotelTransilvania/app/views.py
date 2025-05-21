@@ -15,7 +15,6 @@ def suite_luxo(request):
 def accomodations(request):
     return render(request, 'accomodations.html')
 
-
 def reserva(request): 
     return render(request, 'reserva.html')
 
