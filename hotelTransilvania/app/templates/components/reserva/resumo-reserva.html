@@ -9,6 +9,18 @@
         <p><strong>Acomodação:</strong> Suíte Luxo</p>
         <p><strong>Capacidade:</strong> 2 pessoas</p>
         <p><strong>Preço por noite:</strong> R$ 320,00</p>
+
+        <!-- Datas vindas da página anterior -->
+        <div style="display: none;">
+            <label for="{{ form.data_inicio.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Data de ida</label>
+            {{ form.data_inicio }}
+        </div>
+
+        <div style="display: none;">
+            <label for="{{ form.data_fim.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Data de volta</label>
+            {{ form.data_fim }}
+        </div>
+
         <p id="resumoDatas" class="text-sm text-gray-600"></p>
         <p id="total_reserva" class="text-lg font-semibold text-emerald-700"></p>
     </div>
@@ -38,29 +50,55 @@
 </div>
 
 <script type="module">
-    import { calcularTotal } from "{% static 'js/calculoTotalReserva.js' %}";
-    document.getElementById('data_ida').addEventListener('change', calcularTotal);
-    document.getElementById('data_volta').addEventListener('change', calcularTotal);
+    // Atualizar resumo da reserva
+    function atualizarResumoReserva() {
+        // Capturar as datas do Django Forms
+        const dataIda = document.querySelector("#{{ form.data_inicio.id_for_label }}").value;
+        const dataVolta = document.querySelector("#{{ form.data_fim.id_for_label }}").value;
 
-    let currentIndex = 0;
-    const carousel = document.getElementById('carouselImages');
-    const slides = carousel.children;
+        const dataInicial = new Date(dataIda);
+        const dataFinal = new Date(dataVolta);
 
-    function updateCarousel() {
-        const width = slides[0].clientWidth;
-        carousel.style.transform = `translateX(-${currentIndex * width}px)`;
+        if (isNaN(dataInicial) || isNaN(dataFinal) || dataInicial >= dataFinal) {
+            document.getElementById('resumoDatas').textContent = "Por favor, selecione um período válido.";
+            document.getElementById('total_reserva').textContent = "";
+            return;
+        }
+
+        const diff = Math.ceil((dataFinal - dataInicial) / (1000 * 60 * 60 * 24));
+        const total = diff * 320;
+
+        document.getElementById('resumoDatas').textContent = `Período: ${dataIda} a ${dataVolta} (${diff} noites)`;
+        document.getElementById('total_reserva').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
     }
 
-    // Expor as funções globalmente
-    window.nextSlide = function () {
+    document.addEventListener("DOMContentLoaded", atualizarResumoReserva);
+
+    // Controle do carrossel de imagens
+    let currentIndex = 0;
+    const carousel = document.getElementById('carouselImages');
+    const slides = Array.from(carousel.children);
+
+    function updateCarousel() {
+        if (slides.length > 0) {
+            const width = slides[0].clientWidth;
+            carousel.style.transform = `translateX(-${currentIndex * width}px)`;
+        }
+    }
+
+    function nextSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
         updateCarousel();
-    };
+    }
 
-    window.prevSlide = function () {
+    function prevSlide() {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateCarousel();
-    };
+    }
+
+    window.nextSlide = nextSlide;
+    window.prevSlide = prevSlide;
 
     window.addEventListener('resize', updateCarousel);
+    window.addEventListener('load', updateCarousel);
 </script>

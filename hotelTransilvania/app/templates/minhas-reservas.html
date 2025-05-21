@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold text-center mb-4">Minhas Reservas</h2>
+
+    {% if reservas %}
+        <ul class="space-y-6">
+            {% for reserva in reservas %}
+            <li class="p-5 border border-gray-300 rounded-md bg-gray-100">
+                <p class="text-lg font-semibold text-gray-800">🏨 {{ reserva.acomodacao_nome }}</p>
+                <p><strong>💰 Preço total:</strong> {{ reserva.total_preco }}</p>
+                <p><strong>📅 Data da reserva:</strong> {{ reserva.data_reserva }}</p>
+                <p><strong>🗓 Período:</strong> {{ reserva.periodo }}</p>
+                <p><strong>Status:</strong> 
+                    {% if reserva.statusReserva == 'pendente' %}
+                        <span class="text-yellow-500 font-semibold">Pendente</span>
+                    {% else %}
+                        <span class="text-green-600 font-semibold">Concluída</span>
+                    {% endif %}
+                </p>
+                <!-- Se houver avaliações, exibir como comentários -->
+                {% if reserva.avaliacoes %}
+                    <div class="mt-4 p-4 bg-white border border-gray-300 rounded-md shadow-sm">
+                        <h3 class="text-md font-bold mb-3">📢 Minhas Avaliações</h3>
+                        {% for avaliacao in reserva.avaliacoes %}
+                        <div class="border-b border-gray-200 pb-3 mb-3">
+                            <p class="text-sm text-gray-700">⭐ Nota: <strong>{{ avaliacao.nota }}/5</strong></p>
+                            <p class="text-gray-600 italic">"{{ avaliacao.comentario }}"</p>
+                            <p class="text-xs text-gray-500">🕒 Avaliado em {{ avaliacao.data_avaliacao|date:"d/m/Y H:i" }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-500 mt-4 italic">Ainda não avaliou essa acomodação.</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center text-gray-500">Você ainda não tem reservas.</p>
+    {% endif %}
+</div>
+{% endblock %}

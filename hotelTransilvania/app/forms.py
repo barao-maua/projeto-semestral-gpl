@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, AvaliacaoUsuario
+from .models import Usuario, AvaliacaoUsuario, Reserva
 
 class UsuarioForm(forms.ModelForm):
     username = forms.CharField(
@@ -65,4 +65,14 @@ class AvaliacaoUsuarioForm(forms.ModelForm):
             'max': '5'
         })
 
-    
+class ReservaForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ['data_inicio', 'data_fim']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            # Defina os campos como somente leitura
+            self.fields['data_inicio'].widget.attrs['readonly'] = True
+            self.fields['data_fim'].widget.attrs['readonly'] = True

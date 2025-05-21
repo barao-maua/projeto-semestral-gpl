@@ -31,15 +31,25 @@
     <p>Total:</p>
     <p id="total_reserva" class="text-lg font-semibold text-emerald-700">R$ 0,00</p>
   </div>
+  
+<button type="button" onclick="redirecionarParaReserva()" class="mt-4 bg-orange-500 text-white py-2 px-4 rounded-md cursor-pointer">
+    Reservar
+</button>
 
-  <div class="flex justify-center">
-    <a href="{% url 'reserva' %}" class="w-52 text-center text-white p-3 rounded-full cursor-pointer hover:opacity-80 transition-opacity duration-300" style="background-color: var(--color-background)">
-      Reservar
-    </a>
-  </div>
 </div>
 
 <script type="module">
+  function redirecionarParaReserva() {
+    const dataIda = document.getElementById('data_ida').value;
+    const dataVolta = document.getElementById('data_volta').value;
+    if (dataIda && dataVolta) {
+        window.location.href = `/reserva/?data_ida=${dataIda}&data_volta=${dataVolta}`;
+    } else {
+        alert('Por favor, selecione as datas de ida e volta.');
+    }
+    }
+  
+  window.redirecionarParaReserva = redirecionarParaReserva;
 
   //Calcular Total das Reservas
   import { calcularTotal } from "{% static 'js/calculoTotalReserva.js' %}";
