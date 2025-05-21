@@ -1,30 +1,49 @@
 {% load static %}
-<div
-  class="border border-gray-300 rounded-lg px-6 py-8 flex flex-col w-76 shadow-lg"
->
-  <h3>Suíte Luxo</h3>
-  <div class="space-y-4 border border-gray-300 rounded-lg px-2 py-4 my-7">
-    <p class="font-semibold">Data</p>
-    <p class="text-xs font-light">04 de fevereiro ~ 08 de fevereiro</p>
+<div class="border border-gray-300 rounded-lg px-6 py-8 flex flex-col w-76 shadow-lg">
+  <h3 class="text-lg font-semibold text-center mb-4">Suíte Luxo</h3>
+
+  <div class="py-4">
+    <label for="data_ida" class="block text-sm font-medium text-gray-700 mb-1">Data de ida</label>
+    <input type="date" id="data_ida" name="data_ida" onchange="calcularTotal()" class="w-full border border-gray-300 rounded-md px-3 py-2" required>
   </div>
-  <hr class="border-gray-300" />
-  <div class="space-y-2 my-5">
+
+  <div class="pb-4">
+    <label for="data_volta" class="block text-sm font-medium text-gray-700 mb-1">Data de volta</label>
+    <input type="date" id="data_volta" name="data_volta" onchange="calcularTotal()" class="w-full border border-gray-300 rounded-md px-3 py-2" required>
+  </div>
+
+  <!-- Resumo do período -->
+  <p id="resumoDatas" class="text-sm text-gray-600 mb-4"></p>
+
+  <hr class="border-gray-300 mb-4" />
+
+  <div class="space-y-2 mb-5">
     <p class="font-semibold">Reservas</p>
     <span class="flex justify-between items-center text-sm">
       <p>Adultos (18+)</p>
       <p>2</p>
     </span>
   </div>
-  <hr class="border-gray-300" />
-  <div class="flex justify-between items-center font-semibold my-7">
+
+  <hr class="border-gray-300 mb-5" />
+
+  <div class="flex justify-between items-center font-semibold mb-6">
     <p>Total:</p>
-    <p>R$ 530,00</p>
+    <p id="total_reserva" class="text-lg font-semibold text-emerald-700">R$ 0,00</p>
   </div>
+
   <div class="flex justify-center">
-<a href="{% url 'reserva' %}"
-class="w-52 text-center text-white p-3 rounded-full cursor-pointer hover:opacity-80 transition-opacity duration-300 "
-style="background-color: var(--color-background)">
-  Reservar
-</a>
+    <a href="{% url 'reserva' %}" class="w-52 text-center text-white p-3 rounded-full cursor-pointer hover:opacity-80 transition-opacity duration-300" style="background-color: var(--color-background)">
+      Reservar
+    </a>
+  </div>
 </div>
-</div>
+
+<script type="module">
+
+  //Calcular Total das Reservas
+  import { calcularTotal } from "{% static 'js/calculoTotalReserva.js' %}";
+  document.getElementById('data_ida').addEventListener('change', calcularTotal);
+  document.getElementById('data_volta').addEventListener('change', calcularTotal);
+
+</script>
