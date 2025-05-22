@@ -11,11 +11,6 @@ class Acomodacao(models.Model):
     def __str__ (self):
         return self.nome
     
-    def __str__ (self):
-        return self.capacidade
-    
-    def __str__ (self):
-        return self.descricao
     
 
 class AcomodacaoImagem(models.Model):
@@ -34,10 +29,9 @@ class Endereco(models.Model):
     observacao = models.CharField(max_length=100)
 
 class Usuario(models.Model):
-    GENEROS = [
-        ('F', 'Feminino'),
-        ('M', 'Masculino'),
-    ]
+    class Generos(models.TextChoices):
+        FEMININO = 'Feminino', 'feminino'
+        MASCULINO = 'Masculino', 'masculino'
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=14, primary_key=True)
@@ -46,11 +40,12 @@ class Usuario(models.Model):
     email = models.EmailField()
     data_nascimento = models.DateField()
     data_cadastro = models.DateTimeField(auto_now_add=True)
-    genero = models.CharField(max_length=1, choices=GENEROS)
+    genero = models.CharField(max_length=9, 
+                              choices=Generos.choices,
+                              default=Generos.FEMININO)
 
 
 class AvaliacaoUsuario(models.Model):
-    id = models.AutoField(primary_key=True)
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column='id_usuario')
     acomodacao = models.ForeignKey('Acomodacao', on_delete=models.CASCADE, db_column='id_acomodacao')
     nota =  models.DecimalField(
@@ -66,32 +61,34 @@ class AvaliacaoUsuario(models.Model):
 
 
 class Reserva(models.Model):
-    STATUS_CHOICES = [
-        ('pendente', 'Pendente'),
-        ('concluida', 'Concluída'),
-    ]
-
-    id = models.AutoField(primary_key=True)
+    class StatusReserva(models.TextChoices):
+        PENDENTE = 'pendente', 'Pendente'
+        CONCLUIDA = 'concluida', 'Concluída'
+        
     data_inicio = models.DateField()
     data_fim = models.DateField()
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column='id_usuario')
     acomodacao = models.ForeignKey('Acomodacao', on_delete=models.CASCADE, db_column='id_acomodacao')
-    statusReserva = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status_reserva = models.CharField(
+        max_length=10,
+        choices=StatusReserva.choices,
+        default=StatusReserva.PENDENTE
+    )
 
     def __str__(self):
-        return f"Reserva #{self.id} - {self.statusReserva}"
-    
-
+        return f"Reserva #{self.id} - {self.status_reserva}"
 
 class LogReserva(models.Model):
-    ACAO_CHOICES = [
-        ('criacao', 'Criação'),
-        ('alteracao', 'Alteração'),
-        ('cancelamento', 'Cancelamento'),
-    ]
+    class Acoes(models.TextChoices):
+        CRIACAO = 'criacao', 'Criação'
+        ALTERACAO = 'alteracao', 'Alteração'
+        CANCELAMENTO = 'cancelamento', 'Cancelamento'
 
-    id = models.AutoField(primary_key=True)
-    acao = models.CharField(max_length=12, choices=ACAO_CHOICES)
+    acao = models.CharField(  
+        max_length=12,
+        choices=Acoes.choices,
+        default=Acoes.CRIACAO)
+
     data_hora = models.DateTimeField(auto_now_add=True)
     reserva = models.ForeignKey('Reserva', on_delete=models.CASCADE, db_column='id_reserva')
 
@@ -100,13 +97,15 @@ class LogReserva(models.Model):
 
 
 class LogUsuario(models.Model):
-    ACAO_CHOICES = [
-        ('criacao', 'Criação'),
-        ('alteracao', 'Alteração'),
-    ]
+    class Acoes(models.TextChoices):
+        CRIACAO = 'criacao', 'Criação'
+        ALTERACAO = 'alteracao', 'Alteração'
 
-    id = models.AutoField(primary_key=True)
-    acao = models.CharField(max_length=10, choices=ACAO_CHOICES)
+    acao = models.CharField(  
+        max_length=12,
+        choices=Acoes.choices,
+        default=Acoes.CRIACAO)
+
     data_hora = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column='id_usuario')
 
