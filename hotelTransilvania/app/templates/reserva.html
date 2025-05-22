@@ -1,12 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<span class="flex items-start text-gray-500 gap-2 border border-gray-300 mt-5 rounded-lg mx-24 p-3">
-    {% include 'components/breadcrumb/beadcrumb-reserva.html' %}
+<span
+  class="flex items-start text-gray-500 gap-2 border border-gray-300 mt-5 rounded-lg mx-24 p-3"
+>
+  {% include 'components/breadcrumb/beadcrumb-reserva.html' %}
 </span>
 
 <div class="py-10 mt-5 mx-24 flex gap-10">
-    {% include 'components/reserva/informacoes-compra.html' %}
-    {% include 'components/reserva/resumo-reserva.html' %}
+  {% include 'components/reserva/informacoes-compra.html' %} {% include
+  'components/reserva/resumo-reserva.html' %}
 </div>
 
 {% endblock%}

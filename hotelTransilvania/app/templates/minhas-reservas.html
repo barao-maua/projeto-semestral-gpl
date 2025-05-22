@@ -1,9 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 
-{% block content %}
-<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-    <h2 class="text-2xl font-bold text-center mb-4">Minhas Reservas</h2>
+<span
+  class="flex items-start text-gray-500 gap-2 border border-gray-300 mt-5 rounded-lg mx-24 p-3"
+>
+  {% include 'components/breadcrumb/breadcrumb-minhas-reservas.html' %}
+</span>
 
+<<<<<<< HEAD
     {% if reservas %}
         <ul class="space-y-6">
             {% for reserva in reservas %}
@@ -40,5 +43,70 @@
     {% else %}
         <p class="text-center text-gray-500">Você ainda não tem reservas.</p>
     {% endif %}
+=======
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg my-5">
+  <h2 class="text-2xl font-bold text-start mb-4">Minhas Reservas</h2>
+
+  {% if reservas %}
+  <ul class="space-y-6">
+    {% for reserva in reservas %}
+    <li
+      class="p-5 border border-gray-300 rounded-md bg-gray-100 grid grid-cols-2 gap-5"
+    >
+      <div
+        class="bg-[url({% static 'images/suite-luxo/1.png' %})] rounded-lg w-full min-h-52 bg-cover bg-center object-cover flex-shrink-0"
+      ></div>
+      <div>
+        <p class="font-semibold text-lg border-b border-gray-400 mb-4 pb-1">
+          {{ reserva.acomodacao_nome }}
+        </p>
+        <div class="text-sm space-y-2">
+          <p><strong>Preço total:</strong> {{ reserva.total_preco }}</p>
+          <p><strong>Data da reserva:</strong> {{ reserva.data_reserva }}</p>
+          <p><strong>Período:</strong> {{ reserva.periodo }}</p>
+          <p>
+            <strong>Status:</strong>
+            {% if reserva.statusReserva == 'pendente' %}
+            <span class="text-yellow-500 font-semibold">🟡 Pendente</span>
+            {% else %}
+            <span class="text-green-600 font-semibold">✅ Concluída</span>
+            {% endif %}
+          </p>
+        </div>
+
+        {% if reserva.avaliacoes %}
+        <div
+          class="bg-white border border-gray-300 rounded-md shadow-sm text-sm border-box mt-2 p-2 space-y-1"
+        >
+          {% for avaliacao in reserva.avaliacoes %}
+
+          <p><strong>⭐ Minhas Avaliações:</strong></p>
+          <div class="space-y-1">
+            <p class="text-sm text-gray-700">
+              Nota: <strong>{{ avaliacao.nota }}/5</strong>
+            </p>
+            <p class="text-gray-600 italic">"{{ avaliacao.comentario }}"</p>
+            <p class="text-xs text-gray-500">
+              🕒 Avaliado em {{ avaliacao.data_avaliacao|date:"d/m/Y H:i" }}
+            </p>
+          </div>
+
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500 mt-5 text-sm">
+          Ainda não avaliou essa acomodação.
+        </p>
+        {% endif %}
+      </div>
+
+      <!-- Se houver avaliações, exibir como comentários -->
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-center text-gray-500">Você ainda não tem reservas.</p>
+  {% endif %}
+>>>>>>> 37aa1c2ceed58aef744dab0b828cdb49499b5e3d
 </div>
 {% endblock %}

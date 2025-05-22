@@ -52,7 +52,14 @@ class LoginForm(forms.Form):
     )
 
 class AvaliacaoUsuarioForm(forms.ModelForm):
-    nota = forms.DecimalField(min_value=0.0, max_value=5.0, max_digits=2, decimal_places=1)
+    nota = forms.DecimalField(min_value=0.0, max_value=5.0, max_digits=2, decimal_places=1, label='Nota (0 - 5)',widget=forms.NumberInput(attrs={
+            'class': 'w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+        }))
+    
+    comentario = forms.CharField(widget=forms.Textarea(attrs={
+            'class': 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'placeholder': 'Deixe seu comentário...'
+        }))
 
     class Meta:
         model = AvaliacaoUsuario
