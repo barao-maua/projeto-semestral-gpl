@@ -2,27 +2,41 @@
 <header style="background-color: var(--color-background)" class="text-white">
   <nav class="navbar shadow-sm flex justify-between pr-10 pl-10 pt-4 pb-4">
     <div class="flex items-center gap-4">
-      <img
-        src="{% static 'images/brand/logo-hotel.png' %}"
-        alt="Logo"
-        class="w-[70px] h-[auto]"
-      />
+      <a href="{% url 'home' %}">
+        <img
+          src="{% static 'images/brand/logo-hotel.png' %}"
+          alt="Logo"
+          class="w-[70px] h-[auto]"
+        />
+      </a>
+
       <h1 class="font-extralight text-xl">Hotel Trânsilvania</h1>
     </div>
 
     <ul class="flex items-center gap-2">
       {% if user.is_authenticated %}
       <li>
-        <a href="{% url 'logout' %}"
-        class="rounded-3xl btn btn-outline">Sair</a>
+        <a
+          href="{% url 'minhas_reservas' %}"
+          class="font-extralight hover:underline font-bold mr-2gg"
+          >Minhas Reservas</a
+        >
+        <a href="{% url 'logout' %}" class="rounded-3xl btn btn-outline"
+          >Sair</a
+        >
       </li>
       {% else %}
       <li>
-        <a href="{% url 'cadastro' %}" class="font-extralight hover:underline font-bold"
-          >Registrar-se</a>
+        <a
+          href="{% url 'cadastro' %}"
+          class="font-extralight hover:underline font-bold"
+          >Registrar-se</a
+        >
       </li>
       <li>
-        <a href="{% url 'login' %}" class="rounded-3xl btn btn-outline">Entrar</a>
+        <a href="{% url 'login' %}" class="rounded-3xl btn btn-outline"
+          >Entrar</a
+        >
       </li>
       {% endif %}
     </ul>
