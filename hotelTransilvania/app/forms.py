@@ -76,6 +76,10 @@ class ReservaForm(forms.ModelForm):
     class Meta:
         model = Reserva
         fields = ['data_inicio', 'data_fim']
+        widgets = {
+            'data_inicio': forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date'}),
+            'data_fim': forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

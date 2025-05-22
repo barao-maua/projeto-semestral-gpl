@@ -28,7 +28,7 @@
           <p><strong>Período:</strong> {{ reserva.periodo }}</p>
           <p>
             <strong>Status:</strong>
-            {% if reserva.statusReserva == 'pendente' %}
+            {% if reserva.status_reserva == 'pendente' %}
             <span class="text-yellow-500 font-semibold">🟡 Pendente</span>
             {% else %}
             <span class="text-green-600 font-semibold">✅ Concluída</span>

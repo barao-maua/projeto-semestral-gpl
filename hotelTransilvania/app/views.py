@@ -116,7 +116,7 @@ def criar_reserva(request):
             reserva = form.save(commit=False)
             reserva.usuario = usuario
             reserva.acomodacao = acomodacao
-            reserva.statusReserva = 'concluída'
+            reserva.status_reserva = 'concluída'
             reserva.save()
             return redirect('minhas_reservas')  # Substitua pelo nome da sua URL de sucesso
     else:
