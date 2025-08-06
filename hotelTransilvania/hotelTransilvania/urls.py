@@ -27,11 +27,12 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('suite-luxo/', app_views.suite_luxo, name='suite_luxo'),
     path('accomodations/', app_views.accomodations, name='accomodations'),
-    path('reserva/', app_views.reserva, name='reserva'),
+    path('reserva/', app_views.criar_reserva, name='reserva'),
     path('cadastro/', app_views.cadastrar_usuario, name='cadastro'),
     path('login/', app_views.login_usuario, name='login'),
     path('logout/', app_views.logout_usuario, name='logout'),
     path('avaliar/', app_views.criar_avaliacao, name='criar_avaliacao'),
+    path('reservas/', app_views.minhas_reservas, name='minhas_reservas'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
