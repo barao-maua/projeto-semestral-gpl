@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, AvaliacaoUsuario
+from .models import Usuario, AvaliacaoUsuario, Reserva
 
 class UsuarioForm(forms.ModelForm):
     username = forms.CharField(
@@ -52,7 +52,14 @@ class LoginForm(forms.Form):
     )
 
 class AvaliacaoUsuarioForm(forms.ModelForm):
-    nota = forms.DecimalField(min_value=0.0, max_value=5.0, max_digits=2, decimal_places=1)
+    nota = forms.DecimalField(min_value=0.0, max_value=5.0, max_digits=2, decimal_places=1, label='Nota (0 - 5)',widget=forms.NumberInput(attrs={
+            'class': 'w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+        }))
+    
+    comentario = forms.CharField(widget=forms.Textarea(attrs={
+            'class': 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'placeholder': 'Deixe seu comentário...'
+        }))
 
     class Meta:
         model = AvaliacaoUsuario
@@ -65,4 +72,18 @@ class AvaliacaoUsuarioForm(forms.ModelForm):
             'max': '5'
         })
 
-    
+class ReservaForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ['data_inicio', 'data_fim']
+        widgets = {
+            'data_inicio': forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date'}),
+            'data_fim': forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            # Defina os campos como somente leitura
+            self.fields['data_inicio'].widget.attrs['readonly'] = True
+            self.fields['data_fim'].widget.attrs['readonly'] = True
